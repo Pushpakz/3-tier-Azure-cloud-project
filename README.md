@@ -1,25 +1,27 @@
-🚀 Cloud-Native 3-Tier Platform on Microsoft Azure (AKS + Terraform + CI/CD)
-📌 Project Overview
+# 🚀 Cloud-Native 3-Tier Platform on Microsoft Azure  
+### AKS | Terraform | Docker | Helm | Azure DevOps | Apache Airflow
 
-This project demonstrates the design and implementation of a cloud-native platform on Microsoft Azure using:
+---
 
-Infrastructure as Code (Terraform)
+## 📌 Project Overview
 
-Azure Kubernetes Service (AKS)
+This project demonstrates the design and implementation of a **cloud-native platform on Microsoft Azure** using modern DevOps practices.
 
-Docker containers
+It includes:
 
-Azure Container Registry (ACR)
+- Infrastructure as Code (Terraform)
+- Azure Kubernetes Service (AKS)
+- Azure Container Registry (ACR)
+- Docker containerization
+- Helm-based Kubernetes deployments
+- Azure DevOps CI/CD pipelines
+- Apache Airflow deployment
 
-Helm
+The solution showcases scalability, automation, modular design, and production-grade cloud practices.
 
-Azure DevOps CI/CD
+---
 
-Apache Airflow
-
-The solution reflects modern DevOps best practices including scalability, security, automation, idempotency, and modular architecture.
-
-🏗️ Architecture Overview
+## 🏗️ Architecture Overview
 Azure
 │
 ├── Resource Group
@@ -27,275 +29,212 @@ Azure
 ├── Azure Container Registry (ACR)
 │
 ├── Azure Kubernetes Service (AKS)
-│   ├── Namespace: three-tier
-│   │    ├── Frontend (Deployment + Service)
-│   │    ├── Backend (Deployment + Service)
-│   │    └── PostgreSQL (StatefulSet + PVC)
-│   │
-│   └── Namespace: airflow
-│        ├── Webserver
-│        ├── Scheduler
-│        ├── Workers
-│        ├── Redis
-│        └── PostgreSQL
+│ ├── Namespace: three-tier
+│ │ ├── Frontend (Deployment + Service)
+│ │ ├── Backend (Deployment + Service)
+│ │ └── PostgreSQL (StatefulSet + PVC)
+│ │
+│ └── Namespace: airflow
+│ ├── Webserver
+│ ├── Scheduler
+│ ├── Workers
+│ ├── Redis
+│ └── PostgreSQL
 │
 └── Azure DevOps
-     ├── CI Pipeline (Build + Push Images)
-     └── CD Pipeline (Deploy to AKS)
-📁 Repository Structure
+├── CI Pipeline (Build + Push Images)
+└── CD Pipeline (Deploy to AKS)
+
+---
+
+## 📁 Repository Structure
 azure-cloud-platform/
 │
 ├── terraform/
-│   ├── backend.tf
-│   ├── providers.tf
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── modules/
-│       ├── rg/
-│       ├── acr/
-│       └── aks/
+│ ├── backend.tf
+│ ├── providers.tf
+│ ├── main.tf
+│ ├── variables.tf
+│ ├── outputs.tf
+│ └── modules/
+│ ├── rg/
+│ ├── acr/
+│ └── aks/
 │
 ├── app/
-│   ├── frontend/
-│   │   ├── Dockerfile
-│   │   ├── index.html
-│   │   └── style.css
-│   │
-│   └── backend/
-│       ├── Dockerfile
-│       ├── app.py
-│       └── requirements.txt
+│ ├── frontend/
+│ │ ├── Dockerfile
+│ │ ├── index.html
+│ │ └── style.css
+│ │
+│ └── backend/
+│ ├── Dockerfile
+│ ├── app.py
+│ └── requirements.txt
 │
 ├── helm/
-│   └── three-tier/
-│       ├── Chart.yaml
-│       ├── values.yaml
-│       └── templates/
+│ └── three-tier/
+│ ├── Chart.yaml
+│ ├── values.yaml
+│ └── templates/
 │
 ├── airflow/
-│   └── values.yaml
+│ └── values.yaml
 │
 └── azure-pipelines/
-    ├── ci.yml
-    └── cd.yml
-🧱 Infrastructure Provisioning
+├── ci.yml
+└── cd.yml
 
-Infrastructure is provisioned using Terraform (modular approach).
+---
 
-Resources Created
+## 🧱 Infrastructure Provisioning (Terraform)
 
-Azure Resource Group
+Infrastructure is provisioned using **modular Terraform design**.
 
-Azure Container Registry (ACR)
+### Resources Created
 
-Azure Kubernetes Service (AKS)
-
-System-assigned managed identity
-
-Remote backend for Terraform state
-
-Deployment Commands
-cd terraform
-terraform init
-terraform plan
-terraform apply
-
-Infrastructure is:
-
-Modular
-
-Environment-ready
-
-Idempotent
-
-Using remote backend state
+- Azure Resource Group
+- Azure Container Registry (ACR)✔ Modular
+✔ Idempotent
+✔ Remote backend enabled
+✔ Environment-ready structure
 
 🐳 Container Platform
 3-Tier Application
+
 1️⃣ Frontend
-
 Nginx-based static UI
-
-Colorful responsive UI
-
-Communicates with backend API
+Colorful responsive interface
+Calls backend API
 
 2️⃣ Backend
-
-Python (Flask)
-
-REST API
-
+Python (Flask REST API)
+Exposes health endpoint
 Connects to PostgreSQL
 
 3️⃣ Database
-
 PostgreSQL
+StatefulSet with Persistent Volume
 
-StatefulSet with persistent storage
-
-Docker Build & Push
+Build & Push Docker Images
+# Frontend
 docker build -t <acr-name>.azurecr.io/frontend:latest ./app/frontend
 docker push <acr-name>.azurecr.io/frontend:latest
 
+# Backend
 docker build -t <acr-name>.azurecr.io/backend:latest ./app/backend
 docker push <acr-name>.azurecr.io/backend:latest
-☸️ Kubernetes Deployment
 
-Deployment is managed using Helm Charts.
+☸️ Kubernetes Deployment (Helm)
+Helm is used to manage Kubernetes workloads.
 
-Features Implemented
-
-Namespace isolation
-
+Implemented Kubernetes Components
+Namespaces
 Deployments
-
-StatefulSet (PostgreSQL)
-
-Services (ClusterIP / LoadBalancer)
-
-Kubernetes Secrets
-
+StatefulSet
+Services
+Secrets
+Resource Requests & Limits
 Horizontal Pod Autoscaler (HPA)
-
-Resource requests & limits
 
 Deploy Application
 helm upgrade --install three-tier ./helm/three-tier
+
 🌬️ Apache Airflow Deployment
+Apache Airflow is deployed on the same AKS cluster using Helm.
 
-Airflow is deployed on the same AKS cluster using Helm.
-
-Configuration Includes
-
+Configuration Includes :
 CeleryExecutor
-
 Redis
-
 PostgreSQL
-
 Persistent DAG storage
-
 Persistent logs
-
 LoadBalancer service
-
 Resource limits
 
-Disabled example DAGs
+Deploy Airflow
+helm repo add apache-airflow https://airflow.apache.org
+helm repo update
 
-Install Command
 helm upgrade --install airflow apache-airflow/airflow \
   --namespace airflow \
   -f airflow/values.yaml
+
 🔄 CI/CD Implementation (Azure DevOps)
 CI Pipeline
-
 Code build
-
 Docker image build
-
 Image push to ACR
 
 CD Pipeline
-
 Helm deployment
-
-Environment-aware
-
-AKS deployment automation
+Environment-aware configuration
+Automated deployment to AKS
 
 Pipelines are:
-
 Modular
-
 Reusable
-
-Environment-aware (dev/stage/prod ready)
+Environment-ready (dev/stage/prod compatible)
 
 🔐 Security Best Practices
-
-No hardcoded credentials
-
-Kubernetes Secrets for DB credentials
-
 Managed Identity for AKS
-
 ACR admin disabled
-
+Kubernetes Secrets for credentials
 Namespace isolation
-
 Resource limits defined
+Remote Terraform state
 
-Future Improvements:
-
+Future enhancements:
 Azure Key Vault integration
-
-Pod Security Policies
-
 Network Policies
-
-HTTPS via cert-manager
+HTTPS with cert-manager
+Pod Security Standards
 
 📈 Scalability & Reliability
-
 Horizontal Pod Autoscaler enabled
-
-Resource requests & limits defined
-
-Stateful database with persistent volume
-
-Decoupled services
-
 CeleryExecutor for scalable Airflow workers
-
-🔎 Observability (Extendable)
-
-Project designed to support:
-
-Prometheus
-
-Grafana
-
-Azure Monitor
-
-Log Analytics
+Persistent storage for DB and logs
+Decoupled microservice architecture
 
 🧹 Resource Cleanup
 
 To avoid Azure charges:
-
 cd terraform
 terraform destroy
 
-Delete remote state:
-
+Delete remote backend storage:
 az group delete --name tfstate-rg --yes
-🎯 Key DevOps Concepts Demonstrated
 
-Infrastructure as Code (Terraform)
+🎯 DevOps Concepts Demonstrated
 
+Infrastructure as Code
 Modular Terraform design
-
-Kubernetes workload management
-
-Helm-based deployments
-
+Kubernetes orchestration
+Helm-based deployment
 CI/CD automation
-
 Containerization
-
 Cloud-native architecture
-
-Production-grade best practices
+Production-grade DevOps practices
 
 👨‍💻 Author
 
 Pushpak Zambare
 DevOps Engineer
-Cloud | Kubernetes | Terraform | CI/CD | Azure
+Azure | Kubernetes | Terraform | CI/CD | Cloud Automation
 
 🏆 Project Outcome
 
-Successfully designed and deployed a scalable, secure, automated cloud-native platform on Azure using industry-standard DevOps tools and practices.
+Successfully designed and deployed a scalable, secure, automated cloud-native platform on Azure using industry-standard DevOps tools and best practices.
+  
+- Azure Kubernetes Service (AKS)
+- Managed Identity
+- Remote Backend (Azure Storage for tfstate)
+
+### Deploy Infrastructure
+
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+
