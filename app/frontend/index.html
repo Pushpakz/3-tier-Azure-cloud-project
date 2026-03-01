@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Native Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🚀 Azure AKS 3-Tier App</h1>
+  <button onclick="callAPI()">Call Backend</button>
+  <p id="response"></p>
+
+  <script>
+    function callAPI() {
+      fetch('/api/')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("response").innerText = data.message;
+      });
+    }
+  </script>
+</body>
+</html>

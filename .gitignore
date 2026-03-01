@@ -1,0 +1,11 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Airflow logs
+logs/
+
+# Python
+__pycache__/

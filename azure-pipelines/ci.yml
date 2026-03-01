@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr-service-connection'
+    repository: 'frontend'
+    command: 'buildAndPush'
+    Dockerfile: 'app/frontend/Dockerfile'
+    tags: latest
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr-service-connection'
+    repository: 'backend'
+    command: 'buildAndPush'
+    Dockerfile: 'app/backend/Dockerfile'
+    tags: latest

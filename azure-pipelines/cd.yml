@@ -1,0 +1,14 @@
+stages:
+- stage: Deploy
+  jobs:
+  - job: AKSDeploy
+    steps:
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: Azure Resource Manager
+        azureSubscription: 'azure-service-connection'
+        azureResourceGroup: aks-platform-rg
+        kubernetesCluster: aks-platform
+        command: upgrade
+        chartType: FilePath
+        chartPath: helm/three-tier
